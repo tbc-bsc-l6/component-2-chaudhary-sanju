@@ -43,8 +43,8 @@ class CategoryController extends Controller
 
         $category = new Category();
         $category->name = $request->name;
-        $category->description = $request->name;
-        $category->status = 'active';
+        $category->description = $request->description;
+        $category->status = $request->has('status') ? 'active' : 'inActive';
 
         $category -> save();
 
