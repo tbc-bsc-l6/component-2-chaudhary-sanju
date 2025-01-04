@@ -11,7 +11,7 @@
     <nav class="navbar navbar-expand-md bg-white shadow-lg bsb-navbar bsb-navbar-hover bsb-navbar-caret">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <strong>E-Book Dashboard</strong>
+                <strong>E-Book Dashboard : Admin</strong>
             </a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
@@ -32,16 +32,15 @@
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#!" id="accountDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                @if (Auth::check())
-                                    Hello, {{ Auth::user()->name }}
+                                data-bs-toggle="dropdown" aria-expanded="false">@if (Auth::guard('admin')->check())
+                                    Hello, {{ Auth::guard('admin')->user()->name }}
                                 @else
-                                    Hello, Guest
+                                    Hello, Admin
                                 @endif
                             </a>
                             <ul class="dropdown-menu border-0 shadow bsb-zoomIn" aria-labelledby="accountDropdown">
                                 <li>
-                                    <a class="dropdown-item" href="{{ route('account.logout') }}">Logout</a>
+                                    <a class="dropdown-item" href="{{ route('admin.logout') }}">Logout</a>
                                 </li>
                             </ul>
                         </li>
