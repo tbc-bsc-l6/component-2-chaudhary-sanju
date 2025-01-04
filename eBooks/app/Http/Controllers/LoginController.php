@@ -24,10 +24,11 @@ class LoginController extends Controller
 
         if($validator->passes()){
             if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
+                return redirect()->route('account.dashboard');
 
             }
             else{
-                return redirect()-> route('account.login') -> with('Either email or password doesnot match.');
+                return redirect()-> route('account.login') -> with('error','Either email or password doesnot match.');
             }
 
 
@@ -69,5 +70,10 @@ class LoginController extends Controller
             ->withErrors($validator);
         }
 
+    }
+
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('account.login');
     }
 }
