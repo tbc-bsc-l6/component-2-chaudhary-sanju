@@ -24,34 +24,43 @@ class ProfileController extends Controller
     public function update(Request $request)
     {
         $user = User::findOrFail(Auth::guard('admin')->user()->id);
-
+    
         // Validation rules
         $rules = [
             'name' => 'required|min:5|max:255',
             'password' => 'nullable|min:8|confirmed',
+            'current_password' => 'nullable', // Make old password nullable
         ];
-
+    
         // Validate the input
         $validator = Validator::make($request->all(), $rules);
-
+    
         if ($validator->fails()) {
             return redirect()
-                ->route('user.edit', $user->id)
+                ->route('profile.edit', $user->id)
                 ->withInput()
                 ->withErrors($validator);
         }
-
+    
+        // If old password is provided, check if it matches the current password
+        if ($request->current_password && !Hash::check($request->current_password, $user->password)) {
+            return redirect()
+                ->route('profile.edit', $user->id)
+                ->withErrors(['current_password' => 'The old password does not match.'])
+                ->withInput();
+        }
+    
         // Update user details
         $user->name = $request->name;
-
+    
         if (!empty($request->password)) {
             $user->password = Hash::make($request->password);
         }
-
+    
         $user->save();
-
+    
         return redirect()
             ->route('admin.dashboard')
             ->with('success', 'User updated successfully');
     }
-}
+}    
