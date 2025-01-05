@@ -95,7 +95,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark border-bottom py-2" href="#"
+                                <a class="nav-link text-dark border-bottom py-2" href="{{ route('profile.edit') }}"
                                     style="border: 1px solid #dee2e6; border-radius: 0.25rem;">
                                     Settings
                                 </a>
