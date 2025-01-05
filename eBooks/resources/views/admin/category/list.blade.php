@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Ebooks - Dashboard')
+@section('title', 'List Category - Ebooks Dashboard')
 
 @section('content')
     <div class="container">
