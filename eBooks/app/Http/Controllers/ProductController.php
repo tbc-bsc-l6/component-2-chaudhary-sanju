@@ -49,9 +49,7 @@ class ProductController extends Controller
             'description' => 'required|min:10',
             'img' => 'required|mimes:jpeg,jpg,png,gif,svg|max:10000',
             'published_at' => 'required|date',
-            'price' => 'required|numeric|min:0',
-            'featured' => 'boolean',
-            'status' => 'required|in:active,inactive',
+            'price' => 'required|numeric|min:0'
         ];
         
         $validator = Validator::make($request->all(), $rules);
@@ -73,8 +71,8 @@ class ProductController extends Controller
         $product->img = $imageName;
         $product->published_at = $request->published_at;
         $product->price = $request->price;
-        $product->featured = $request->has('featured') ? true : false;
-        $product->status = $request->status;
+        $product->featured = $request->has('featured') ? '1' : '0';
+        $product->status = $request->has('status') ? 'active' : 'inActive';
 
         $product->save();
 
@@ -122,9 +120,7 @@ class ProductController extends Controller
             'description' => 'required|min:10',
             'img' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'published_at' => 'required|date',
-            'price' => 'required|numeric|min:0',
-            'featured' => 'boolean',
-            'status' => 'required|in:active,inactive',
+            'price' => 'required|numeric|min:0'
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -134,8 +130,9 @@ class ProductController extends Controller
         }
 
         if ($request->hasFile('img')) {
-            $imagePath = $request->file('img')->store('products', 'public');
-            $product->img = $imagePath;
+            $imageName = time().'.'.request()->img->getClientOriginalExtension();
+            request()->img->move(public_path('product'), $imageName);
+            $product->img = $imageName;
         }
 
         $product->title = $request->title;
@@ -144,8 +141,8 @@ class ProductController extends Controller
         $product->description = $request->description;
         $product->published_at = $request->published_at;
         $product->price = $request->price;
-        $product->featured = $request->has('featured');
-        $product->status = $request->status;
+        $product->featured = $request->has('featured') ? '1' : '0';
+        $product->status = $request->has('status') ? 'active' : 'inActive';
 
         $product->save();
 
@@ -158,8 +155,17 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product = Product::findOrFail($id);
+    
+        // Delete the image from the storage
+        $imagePath = public_path('product/' . $product->img);
+        if (file_exists($imagePath)) {
+            unlink($imagePath); // Unlink the image file
+        }
+    
+        // Delete the product from the database
         $product->delete();
-
+    
         return redirect()->route('product.index')->with('success', 'Product Deleted Successfully');
     }
+    
 }

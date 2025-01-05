@@ -99,16 +99,18 @@
                             </div>
                             <div class="mb-3">
                                 <label for="featured" class="form-label">Featured</label>
-                                <select class="form-control @error('featured') is-invalid @enderror" id="featured" name="featured" required>
-                                    <option value="">Select Featured Status</option>
-                                    <option value="1" {{ old('featured') == '1' ? 'selected' : '' }}>True</option>
-                                    <option value="0" {{ old('featured') == '0' ? 'selected' : '' }}>False</option>
-                                </select>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="featured" name="featured"
+                                        value="1" {{ old('featured') == '1' ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="featured">
+                                        Featured
+                                    </label>
+                                </div>
                                 @error('featured')
                                     <p class="invalid-feedback">{{ $message }}</p>
                                 @enderror
                             </div>
-                            
+
                             <div class="mb-3">
                                 <label for="status" class="form-label">Status</label>
                                 <div class="form-check">
