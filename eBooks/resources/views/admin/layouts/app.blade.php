@@ -54,47 +54,61 @@
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
-            <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
-                <div class="position-sticky pt-3">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#">
-                                Dashboard
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                Orders
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                Products
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                Customers
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                Reports
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                Settings
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+                <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar"
+                    style="height: 100vh; border-right: 1px solid #dee2e6;">
+                    <div class="position-sticky pt-3">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link active text-dark border-bottom py-2" href="{{ route('admin.dashboard') }}"
+                                    style="border: 1px solid #dee2e6; border-radius: 0.25rem;">
+                                    Dashboard
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark border-bottom py-2" href="#"
+                                    style="border: 1px solid #dee2e6; border-radius: 0.25rem;">
+                                    Users
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark border-bottom py-2" href="{{ route('author.index') }}"
+                                    style="border: 1px solid #dee2e6; border-radius: 0.25rem;">
+                                    Author
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark border-bottom py-2" href="{{ route('category.index') }}"
+                                    style="border: 1px solid #dee2e6; border-radius: 0.25rem;">
+                                    Category
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark border-bottom py-2" href="{{ route('product.index') }}"
+                                    style="border: 1px solid #dee2e6; border-radius: 0.25rem;">
+                                    Product
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark border-bottom py-2" href="#"
+                                    style="border: 1px solid #dee2e6; border-radius: 0.25rem;">
+                                    Orders
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark border-bottom py-2" href="#"
+                                    style="border: 1px solid #dee2e6; border-radius: 0.25rem;">
+                                    Settings
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
 
-            <!-- Main Content -->
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                @yield('content')
-            </main>
+
+                <!-- Main Content -->
+                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                    @yield('content')
+                </main>
         </div>
     </div>
 
