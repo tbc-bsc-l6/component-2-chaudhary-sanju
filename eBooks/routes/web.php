@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\admin\LoginController as AdminLoginController;
+use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
@@ -51,6 +52,14 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/category/{category}/edit', [CategoryController::class, 'edit'])->name('category.edit');
         Route::put('/category/{category}', [CategoryController::class, 'update'])->name('category.update');
         Route::delete('/category/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
+
+        // Route for author
+        Route::get('/author', [AuthorController::class, 'index'])->name('author.index');
+        Route::get('/author/create', [AuthorController::class, 'create'])->name('author.create');
+        Route::post('/author/store', [AuthorController::class, 'store'])->name('author.store');
+        Route::get('/author/{author}/edit', [AuthorController::class, 'edit'])->name('author.edit');
+        Route::put('/author/{author}', [AuthorController::class, 'update'])->name('author.update');
+        Route::delete('/author/{author}', [AuthorController::class, 'destroy'])->name('author.destroy');
 
         
     });

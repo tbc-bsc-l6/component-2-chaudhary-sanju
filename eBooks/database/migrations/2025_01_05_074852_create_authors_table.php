@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('bio');
+            $table->enum('status',['active','inActive']) ->default('active');
             $table->timestamps();
         });
     }
