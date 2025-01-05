@@ -40,9 +40,12 @@
                                 <td>{{ \Carbon\Carbon::parse($category->created_at)->format('d M, Y') }}</td>
                                 <td>
                                     <a href="{{ route('category.edit', $category->id) }}" class="btn btn-dark">Edit</a>
-                                    <a href="{{ route('category.create', $category->id) }}"
-                                        class="btn btn-danger">Delete</a>
-                                </td>
+                                    <a href="#" onclick="deleteCategory({{ $category->id }});" class="btn btn-danger">Delete</a>
+                                    <form id="delete-category-from-{{ $category->id }}" action="{{ route('category.destroy', $category->id) }}" method="POST" style="display: none;">
+                                        @csrf
+                                        @method('DELETE')
+                                    </form>
+                                </td>                                
                             </tr>
                         @endforeach
                     @else
@@ -59,4 +62,14 @@
 
         </div>
     </div>
+
+    <script>
+        function deleteCategory(id) {
+            if (confirm('Are you sure you want to delete this category?')) {
+                document.getElementById("delete-category-from-" + id).submit();
+            }
+        }
+    </script>    
+
 @endsection
+
