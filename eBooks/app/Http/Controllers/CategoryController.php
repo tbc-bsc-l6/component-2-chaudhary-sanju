@@ -12,8 +12,10 @@ class CategoryController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        return view('admin.category.list'); 
+    {   $categories = Category::orderBy('created_at', 'DESC')->get();
+        return view('admin.category.list',[
+            'categories' => $categories
+        ]); 
     }
 
     /**

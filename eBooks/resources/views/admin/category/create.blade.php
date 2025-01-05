@@ -8,7 +8,17 @@
             <div class="col-md-10 mt-5">
                 <div class="card border-0 shadow-lg">
                     <div class="card-header bg-dark text-white">
-                        <h3>Create Category</h3>
+                        <div class="row">
+                            <div class="col-11">
+                                <h3 class="h5 pt-2">Create Category:</h3>
+                            </div>
+                            <div class="col-1">
+                                <div>
+                                    <a href="{{ route('category.index') }}" class="btn btn-primary">Back</a>
+                                </div>
+        
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
                         <form action="{{ route('category.store') }}" method="POST">
