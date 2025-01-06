@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\LoginController as AdminLoginController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FrontProductController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -15,6 +16,10 @@ Route::get('/', function () {
     return view('welcome');
 })->name('index');
 
+Route::get('/', [FrontProductController::class, 'index']);
+
+Route::get('/product/{id}', [FrontProductController::class, 'show'])->name('product.show');
+
 Route::group(['prefix' => 'account'], function () {
 
     //Guest Middleware
@@ -23,6 +28,7 @@ Route::group(['prefix' => 'account'], function () {
         Route::get('register', [LoginController::class, 'register'])->name('account.register');
         Route::post('process-register', [LoginController::class, 'processRegister'])->name('account.processRegister');
         Route::post('authenticate', [LoginController::class, 'authenticate'])->name('account.authenticate');
+
     });
 
 
