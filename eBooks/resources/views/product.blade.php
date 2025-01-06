@@ -16,7 +16,7 @@
                     <p>{{ $product->category->description }}</p>
                     <h4><strong>Author:</strong> {{ $product->author->name }}</h4>
                     <p><Strong>Bio:</Strong><br>
-                    {{ $product->author->bio }}</p>
+                        {{ $product->author->bio }}</p>
                     <p>Publish on {{ $product->published_at }}</p>
                     <h5>Price: {{ $product->price }}</h5>
                 </div>
@@ -37,8 +37,10 @@
                             <p><strong>Category:</strong> {{ $similarProduct->category->name }}</p>
                             <p><strong>Price:</strong> ${{ $similarProduct->price }}</p>
                             <p><strong>Published on:</strong> {{ $similarProduct->published_at }}</p>
-                            <a href="{{ route('product.show', $similarProduct->id) }}" class="btn btn-primary">Read
-                                More</a>
+                            <a href="{{ route('product.show', $similarProduct->id) }}" class="btn btn-info w-100">View
+                                Book</a>
+                            <a href="{{ route('product.show', $similarProduct->id) }}"
+                                class="btn btn-primary w-100 mt-3 text-white">Add to cart</a>
                         </div>
                     </div>
                 </div>

@@ -10,15 +10,18 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ViewProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-})->name('index');
+});
 
-Route::get('/', [FrontProductController::class, 'index']);
+Route::get('/', [FrontProductController::class, 'index'])->name('home');
 
 Route::get('/product/{id}', [FrontProductController::class, 'show'])->name('product.show');
+
+Route::get('/allProducts', [ViewProductController::class, 'index'])->name('products.index');
 
 Route::group(['prefix' => 'account'], function () {
 

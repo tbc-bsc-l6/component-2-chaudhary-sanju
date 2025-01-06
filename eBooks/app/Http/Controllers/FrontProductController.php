@@ -8,6 +8,7 @@ use App\Models\Product;
 
 class FrontProductController extends Controller
 {
+
     /**
      * Display the latest products on a view.
      *
@@ -44,4 +45,5 @@ class FrontProductController extends Controller
         // Return the data to the Blade view
         return view('product', compact('product', 'similarProducts'));
     }
+
 }
