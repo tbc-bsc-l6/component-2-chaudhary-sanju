@@ -17,12 +17,14 @@ class FrontProductController extends Controller
     {
         $latest_products = Product::with(['author', 'category'])
             ->where('featured', true)
+            ->where('status', 'active')
             ->orderBy('published_at', 'desc')
             ->limit(4) // Fetch the latest 4 products
             ->get();
 
         $featured_products = Product::with(['author', 'category'])
             ->where('featured', true)
+            ->where('status', 'active')
             ->orderBy('published_at', 'desc')
             ->limit(4) // Fetch the featured 4 products
             ->get();
@@ -37,13 +39,13 @@ class FrontProductController extends Controller
 
         // Fetch similar products (same category, different ID), along with their category and author
         $similarProducts = Product::with(['category', 'author'])
+            ->where('status', 'active')
             ->where('category_id', $product->category_id)
             ->where('id', '!=', $product->id)
-            ->take(5) // Limit to 5 similar products
+            ->take(4) // Limit to 4 similar products
             ->get();
 
         // Return the data to the Blade view
         return view('product', compact('product', 'similarProducts'));
     }
-
 }

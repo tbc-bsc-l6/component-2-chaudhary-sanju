@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FrontProductController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -22,6 +23,8 @@ Route::get('/', [FrontProductController::class, 'index'])->name('home');
 Route::get('/product/{id}', [FrontProductController::class, 'show'])->name('product.show');
 
 Route::get('/allProducts', [ViewProductController::class, 'index'])->name('products.index');
+
+Route::get('/news', [NewsController::class, 'index'])->name('news');
 
 Route::group(['prefix' => 'account'], function () {
 
