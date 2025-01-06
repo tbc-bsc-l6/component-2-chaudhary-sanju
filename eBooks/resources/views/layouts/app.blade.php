@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 </head>
 
@@ -15,7 +16,9 @@
 
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container">
-            <a class="navbar-brand" href="{{ route('home') }}">E-Books</a>
+            <a class="navbar-brand" href="{{ route('home') }}">
+                <img src="{{ asset('logo.png') }}" alt="E-Books" style="height: 40px;"> <span class="pt-2">E-Books</span>
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -24,22 +27,45 @@
                 <div class="mx-auto"></div>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="{{ route('home') }}">Home</a>
+                        <a class="nav-link" aria-current="page" href="{{ route('home') }}"> <span class="fw-bolder"><i class="fa fa-home"></i></span> Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('products.index') }}">Books</a>
+                        <a class="nav-link" href="{{ route('products.index') }}"><span class="fw-bolder"><i class="fa fa-book"></i></span> Books</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('news') }}">News</a>
+                        <a class="nav-link" href="{{ route('news') }}"><i class="bi bi-newspaper"></i> News</a>
                     </li>
                     @if (Auth::check())
-                        Hello, {{ Auth::user()->name }}
-                    @else
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('account.login') }}">Login</a>
+                            <a class="nav-link" href="{{ route('news') }}"><i class="bi bi-heart-fill"></i> My Wishlist</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('account.register') }}">Signup</a>
+                            <a class="nav-link" href="{{ route('news') }}"><i class="bi bi-bag-plus-fill"></i> My Order</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                @if (Auth::check())
+                                <i class="bi bi-person-circle"></i>
+                                Hello, {{ Auth::user()->name }}
+                                            @else
+                                                Hello, Guest
+                                            @endif
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ route('account.dashboard')}}"><i class="bi bi-gear-fill"></i> Setting</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="{{ route('account.logout') }}"><i class="bi bi-box-arrow-left"></i> Logout</a></li>
+                            </ul>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('account.login') }}"><i class="bi bi-box-arrow-right"></i> Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('account.register') }}"><i class="bi bi-person-plus-fill"></i> Signup</a>
                         </li>
                     @endif
 
