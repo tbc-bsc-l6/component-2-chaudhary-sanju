@@ -21,4 +21,9 @@ class Product extends Model
     {
         return $this->belongsTo(Author::class);
     }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class); // Product has many orders
+    }
 }

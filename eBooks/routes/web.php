@@ -54,6 +54,10 @@ Route::group(['prefix' => 'account'], function () {
         Route::put('/cart/{id}', [OrderController::class, 'update'])->name('cart.update');
         Route::delete('/cart/{id}', [OrderController::class, 'destroy'])->name('cart.destroy');
 
+        // Route for order
+        Route::post('/checkout', [OrderController::class, 'checkout'])->name('cart.checkout');
+        Route::get('/order', [OrderController::class, 'viewOrder'])->name('order.view');
+
     });
 });
 

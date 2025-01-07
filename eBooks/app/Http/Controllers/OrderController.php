@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -88,5 +89,42 @@ class OrderController extends Controller
         }
 
         return redirect()->route('cart.view')->with('error', 'Cart item not found.');
+    }
+
+    public function checkout()
+    {
+        $userId = Auth::id(); // Get the authenticated user ID
+        $carts = Cart::where('user_id', $userId)->with('product')->get(); // Get all cart items for the user
+
+        // Check if cart is empty
+        if ($carts->isEmpty()) {
+            return redirect()->route('cart.index')->with('error', 'Your cart is empty!');
+        }
+
+        // Create orders from cart items
+        foreach ($carts as $cart) {
+            Order::create([
+                'user_id' => $userId,
+                'product_id' => $cart->product_id,
+                'qty' => $cart->qty,
+                'status' => 'pending',
+            ]);
+        }
+
+        // Remove the cart items after creating the orders
+        Cart::where('user_id', $userId)->delete();
+
+        // Redirect with success message
+        return redirect()->route('cart.view')->with('success', 'Your order has been placed successfully!');
+    }
+
+    public function viewOrder()
+    {
+        $userId = Auth::id(); // Get the authenticated user ID
+        $orders = Order::where('user_id', $userId) // Get orders for the authenticated user
+            ->with('product') // Load product details
+            ->paginate(5); // Paginate the results
+
+        return view('order', compact('orders')); // Pass orders to the view
     }
 }
