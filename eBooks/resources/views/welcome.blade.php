@@ -27,7 +27,7 @@
                                 <p><strong>Price:</strong> ${{ $product->price }}</p>
                                 <p><strong>Published on:</strong> {{ $product->published_at }}</p>
                                 <a href="{{ route('product.show', $product->id) }}" class="btn btn-info w-100">View Book</a>
-                                <a href="{{ route('product.show', $product->id) }}" class="btn btn-primary w-100 mt-3">Add to cart</a>
+                                <a href="{{ route('addtocart', $product->id) }}" class="btn btn-primary w-100 mt-3">Add to cart</a>
                             </div>
                         </div>
                     </div>
@@ -56,7 +56,7 @@
                                 <p><strong>Price:</strong> ${{ $product->price }}</p>
                                 <p><strong>Published on:</strong> {{ $product->published_at }}</p>
                                 <a href="{{ route('product.show', $product->id) }}" class="btn btn-info w-100">View Book</a>
-                                <a href="{{ route('product.show', $product->id) }}" class="btn btn-primary w-100 mt-3 text-white">Add to cart</a>
+                                <a href="{{ route('addtocart', $product->id) }}" class="btn btn-primary w-100 mt-3">Add to cart</a>
                             </div>
                         </div>
                     </div>

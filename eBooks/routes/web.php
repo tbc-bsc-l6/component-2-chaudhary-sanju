@@ -9,6 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FrontProductController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -46,6 +47,13 @@ Route::group(['prefix' => 'account'], function () {
 
         // Route for profile update
         Route::put('profile/update', [CustomerProfileController::class, 'update'])->name('customer.profile.update');
+
+        // Route for cart
+        Route::get('cart/{cart}', [OrderController::class, 'addToCart'])->name('addtocart');
+        Route::get('/cart', [OrderController::class, 'viewCart'])->name('cart.view');
+        Route::put('/cart/{id}', [OrderController::class, 'update'])->name('cart.update');
+        Route::delete('/cart/{id}', [OrderController::class, 'destroy'])->name('cart.destroy');
+
     });
 });
 
