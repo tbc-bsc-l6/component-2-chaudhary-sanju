@@ -111,5 +111,10 @@ Route::group(['prefix' => 'admin'], function () {
         // Route for profile update
         Route::get('profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::put('profile/update', [ProfileController::class, 'update'])->name('profile.update');
+
+        // Route for Order
+        Route::get('/order', [OrderController::class, 'viewAllOrder'])->name('order.index');
+        Route::post('/order/confirm/{id}', [OrderController::class, 'confirmOrder'])->name('orders.confirm');
+
     });
 });

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Author extends Model
 {
     //
-    public function products()
+    public function product()
     {
         return $this->hasMany(Product::class);
     }

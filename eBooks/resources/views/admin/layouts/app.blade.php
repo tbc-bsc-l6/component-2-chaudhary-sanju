@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'E-Books')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="icon" href="{{ asset('logo.png') }}" type="image/png">
 </head>
 
@@ -55,65 +57,69 @@
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
-                <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar"
-                    style="height: 100vh; border-right: 1px solid #dee2e6;">
-                    <div class="position-sticky pt-3">
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link active text-dark border-bottom py-2" href="{{ route('admin.dashboard') }}"
-                                    style="border: 1px solid #dee2e6; border-radius: 0.25rem;">
-                                    Dashboard
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark border-bottom py-2" href="{{ route('user.index') }}"
-                                    style="border: 1px solid #dee2e6; border-radius: 0.25rem;">
-                                    Users
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark border-bottom py-2" href="{{ route('author.index') }}"
-                                    style="border: 1px solid #dee2e6; border-radius: 0.25rem;">
-                                    Author
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark border-bottom py-2" href="{{ route('category.index') }}"
-                                    style="border: 1px solid #dee2e6; border-radius: 0.25rem;">
-                                    Category
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark border-bottom py-2" href="{{ route('product.index') }}"
-                                    style="border: 1px solid #dee2e6; border-radius: 0.25rem;">
-                                    Product
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark border-bottom py-2" href="#"
-                                    style="border: 1px solid #dee2e6; border-radius: 0.25rem;">
-                                    Orders
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark border-bottom py-2" href="{{ route('profile.edit') }}"
-                                    style="border: 1px solid #dee2e6; border-radius: 0.25rem;">
-                                    Settings
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
+            <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar"
+                style="height: 100vh; border-right: 1px solid #dee2e6;">
+                <div class="position-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active text-dark border-bottom py-2"
+                                href="{{ route('admin.dashboard') }}"
+                                style="border: 1px solid #dee2e6; border-radius: 0.25rem;">
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark border-bottom py-2" href="{{ route('user.index') }}"
+                                style="border: 1px solid #dee2e6; border-radius: 0.25rem;">
+                                Users
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark border-bottom py-2" href="{{ route('author.index') }}"
+                                style="border: 1px solid #dee2e6; border-radius: 0.25rem;">
+                                Author
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark border-bottom py-2" href="{{ route('category.index') }}"
+                                style="border: 1px solid #dee2e6; border-radius: 0.25rem;">
+                                Category
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark border-bottom py-2" href="{{ route('product.index') }}"
+                                style="border: 1px solid #dee2e6; border-radius: 0.25rem;">
+                                Product
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark border-bottom py-2" href="{{ route('order.index') }}"
+                                style="border: 1px solid #dee2e6; border-radius: 0.25rem;">
+                                Orders
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark border-bottom py-2" href="{{ route('profile.edit') }}"
+                                style="border: 1px solid #dee2e6; border-radius: 0.25rem;">
+                                Settings
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
 
 
-                <!-- Main Content -->
-                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                    @yield('content')
-                </main>
+            <!-- Main Content -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                @yield('content')
+            </main>
         </div>
     </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
