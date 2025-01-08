@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderPlacedEmail;
 use App\Models\Cart;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -92,31 +94,45 @@ class OrderController extends Controller
     }
 
     public function checkout()
-    {
-        $userId = Auth::id(); // Get the authenticated user ID
-        $carts = Cart::where('user_id', $userId)->with('product')->get(); // Get all cart items for the user
+{
+    $userId = Auth::id(); // Get the authenticated user ID
+    $user = Auth::user(); // Get the authenticated user details
+    $carts = Cart::where('user_id', $userId)->with('product')->get(); // Get all cart items for the user
 
-        // Check if cart is empty
-        if ($carts->isEmpty()) {
-            return redirect()->route('cart.index')->with('error', 'Your cart is empty!');
-        }
-
-        // Create orders from cart items
-        foreach ($carts as $cart) {
-            Order::create([
-                'user_id' => $userId,
-                'product_id' => $cart->product_id,
-                'qty' => $cart->qty,
-                'status' => 'pending',
-            ]);
-        }
-
-        // Remove the cart items after creating the orders
-        Cart::where('user_id', $userId)->delete();
-
-        // Redirect with success message
-        return redirect()->route('cart.view')->with('success', 'Your order has been placed successfully!');
+    // Check if cart is empty
+    if ($carts->isEmpty()) {
+        return redirect()->route('cart.view')->with('error', 'Your cart is empty!');
     }
+
+    $orderDetails = []; // Array to store order details
+
+    // Create orders from cart items
+    foreach ($carts as $cart) {
+        $order = Order::create([
+            'user_id' => $userId,
+            'product_id' => $cart->product_id,
+            'qty' => $cart->qty,
+            'status' => 'pending',
+        ]);
+
+        // Add order details to array
+        $orderDetails[] = [
+            'product_name' => $cart->product->title,
+            'qty' => $cart->qty,
+            'price' => $cart->product->price,
+        ];
+    }
+
+    // Remove the cart items after creating the orders
+    Cart::where('user_id', $userId)->delete();
+
+    // Send email to the user
+    Mail::to($user->email)->send(new OrderPlacedEmail($user, $orderDetails));
+
+    // Redirect with success message
+    return redirect()->route('cart.view')->with('success', 'Your order has been placed successfully!');
+}
+
 
     public function viewOrder()
     {
