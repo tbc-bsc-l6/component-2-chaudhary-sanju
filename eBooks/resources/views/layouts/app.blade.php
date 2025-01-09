@@ -93,7 +93,7 @@
 
     @yield('content')
 
-    <div class="text-center mt-5 mb-0 bg-black text-white container-fluid">
+    <div class="text-center mb-0 bg-black text-white container-fluid">
         <h5 class="py-5">©2025 E-Books. All right reserved.</h5>
     </div>
 

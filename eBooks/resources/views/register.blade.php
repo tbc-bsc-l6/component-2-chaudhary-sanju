@@ -1,7 +1,68 @@
 @extends('layouts.app')
 
 @section('content')
-    <section class=" p-3 p-md-4 p-xl-5">
+
+
+<style>
+    .banner {
+        background-image: url('https://img.freepik.com/free-photo/book-library-with-open-textbook_1150-5918.jpg?t=st=1736404676~exp=1736408276~hmac=3483cac37e0c3cee89f691a1b3d7cb639fb6b089af06384711c1ca732de706d5&w=1380');
+        background-size: cover;
+        background-position: center;
+        min-height: 100vh;
+        position: relative;
+    }
+
+    .card {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(255, 255, 255, 0.85);
+        border-radius: 10px;
+    }
+
+    .card-body {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #004085;
+    }
+
+    h4 {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .form-floating input {
+        border-radius: 5px;
+    }
+
+    .alert {
+        border-radius: 5px;
+    }
+
+    hr {
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .link-secondary {
+        color: #6c757d;
+    }
+
+    .link-secondary:hover {
+        color: #0056b3;
+        text-decoration: underline;
+    }
+</style>
+
+    <section class="banner">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-9 col-lg-7 col-xl-6 col-xxl-5">
