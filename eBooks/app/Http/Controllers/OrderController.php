@@ -11,10 +11,9 @@ use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
-    //
     public function addToCart(Request $request, $id)
     {
-        $userId = Auth::id(); // Assuming the user is authenticated
+        $userId = Auth::id();
 
         // Check if the product already exists in the cart for the user
         $cartItem = Cart::where('user_id', $userId)
@@ -51,27 +50,19 @@ class OrderController extends Controller
         return view('cart', compact('carts', 'totalQty', 'totalPrice'));
     }
 
-
-
     public function update(Request $request, $id)
     {
-        // Validate the incoming quantity
         $request->validate([
-            'qty' => 'required|integer|min:1',
+            'qty' => 'required|integer|min:1'
         ]);
 
-        $userId = Auth::id(); // Get the authenticated user ID
-        $cart = Cart::where('user_id', $userId)->where('id', $id)->first();
+        $cart = Cart::findOrFail($id);
 
-        if ($cart) {
+        $cart->qty = $request->qty;
+        $cart->updated_at = now();
+        $cart->save();
 
-            $cart->qty = $request->qty;
-            $cart->save();
-
-            return redirect()->route('cart.view')->with('success', 'Cart updated successfully.');
-        }
-
-        return redirect()->route('cart.view')->with('error', 'Cart item not found.');
+        return response()->json(['success' => true]);
     }
 
     public function destroy($id)
@@ -95,9 +86,9 @@ class OrderController extends Controller
 
     public function checkout()
     {
-        $userId = Auth::id(); // Get the authenticated user ID
-        $user = Auth::user(); // Get the authenticated user details
-        $carts = Cart::where('user_id', $userId)->with('product')->get(); // Get all cart items for the user
+        $userId = Auth::id(); 
+        $user = Auth::user(); 
+        $carts = Cart::where('user_id', $userId)->with('product')->get(); 
 
         // Check if cart is empty
         if ($carts->isEmpty()) {
@@ -136,17 +127,17 @@ class OrderController extends Controller
 
     public function viewOrder()
     {
-        $userId = Auth::id(); // Get the authenticated user ID
-        $orders = Order::where('user_id', $userId) // Get orders for the authenticated user
-            ->with('product') // Load product details
-            ->paginate(5); // Paginate the results
+        $userId = Auth::id(); 
+        $orders = Order::where('user_id', $userId)
+            ->with('product')
+            ->paginate(5);
 
-        return view('order', compact('orders')); // Pass orders to the view
+        return view('order', compact('orders'));
     }
 
     public function viewAllOrder()
     {
-        $orders = Order::with(['product', 'user'])->paginate(10);
+        $orders = Order::with(['product', 'user'])->paginate(5);
 
         return view('admin.order.list', compact('orders'));
     }

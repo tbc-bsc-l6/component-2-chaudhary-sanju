@@ -72,7 +72,7 @@
                 </table>
                 <!-- Pagination Links -->
                 <div class="d-flex justify-content-center">
-                    {{ $products->links('pagination::bootstrap-4') }}
+                    {{ $products->links('pagination::bootstrap-5') }}
                 </div>
             </div>
         </div>

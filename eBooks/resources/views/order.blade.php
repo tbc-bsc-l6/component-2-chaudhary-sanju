@@ -19,6 +19,7 @@
                         <th>Qty</th>
                         <th>Price</th>
                         <th>Total Price</th>
+                        <th>Status</th>
                         <th>Created At</th>
                         <th>Updated At</th>
                     </tr>
@@ -39,6 +40,15 @@
                                 <td>{{ $order->qty }}</td>
                                 <td>$ {{ $order->product->price }}</td>
                                 <td>$ {{ $order->qty * $order->product->price }}</td>
+                                <td>
+                                    <span
+                                        class="badge 
+                                        @if ($order->status === 'confirm') bg-success 
+                                        @elseif ($order->status === 'pending') bg-warning 
+                                        @else bg-secondary @endif">
+                                        {{ $order->status }}
+                                    </span>
+                                </td>
                                 <td>{{ \Carbon\Carbon::parse($order->created_at)->format('d M, Y') }}</td>
                                 <td>{{ \Carbon\Carbon::parse($order->updated_at)->format('d M, Y') }}</td>
                             </tr>
@@ -54,7 +64,7 @@
 
                 <!-- Pagination Links -->
                 <div class="d-flex justify-content-center">
-                    {{ $orders->links('pagination::bootstrap-4') }}
+                    {{ $orders->links('pagination::bootstrap-5') }}
                 </div>
             </div>
         </div>

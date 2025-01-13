@@ -42,7 +42,15 @@
                                     <td>{{ $order->qty }}</td>
                                     <td>$ {{ $order->product->price }}</td>
                                     <td>$ {{ $order->qty * $order->product->price }}</td>
-                                    <td>{{ ucfirst($order->status) }}</td>
+                                    <td>
+                                        <span
+                                            class="badge 
+                                            @if ($order->status === 'confirm') bg-success 
+                                            @elseif ($order->status === 'pending') bg-warning 
+                                            @else bg-secondary @endif">
+                                            {{ $order->status }}
+                                        </span>
+                                    </td>
                                     <td>{{ \Carbon\Carbon::parse($order->created_at)->format('d M, Y') }}</td>
                                     <td>
                                         @if ($order->status == 'pending')
@@ -51,7 +59,7 @@
                                             <button type="submit" class="btn btn-success">Mark as Confirm</button>
                                         </form>
                                         @else
-                                            <button type="button" class="btn btn-success" disabled>Order Confirmed</button>
+                                            <button type="button" class="btn btn-dark" disabled>Order Confirmed</button>
                                         @endif
 
                                     </td>
@@ -66,7 +74,7 @@
                 </table>
                 <!-- Pagination Links -->
                 <div class="d-flex justify-content-center">
-                    {{ $orders->links('pagination::bootstrap-4') }}
+                    {{ $orders->links('pagination::bootstrap-5') }}
                 </div>
             </div>
         </div>

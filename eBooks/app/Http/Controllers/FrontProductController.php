@@ -16,7 +16,7 @@ class FrontProductController extends Controller
     public function index()
     {
         $latest_products = Product::with(['author', 'category'])
-            ->where('featured', true)
+            ->where('featured', false)
             ->where('status', 'active')
             ->orderBy('published_at', 'desc')
             ->limit(4) // Fetch the latest 4 products

@@ -38,14 +38,10 @@
                                 </td>
                                 <td>{{ $cart->product->title }}</td>
                                 <td>
-                                    <!-- Editable qty field with a form -->
-                                    <form action="{{ route('cart.update', $cart->id) }}" method="POST">
-                                        @csrf
-                                        @method('PUT')
-                                        <input type="number" name="qty" value="{{ $cart->qty }}" min="1"
-                                            max="{{ $cart->product->qty }}" class="form-control" style="width: 80px;">
-                                        <button type="submit" class="btn btn-sm btn-dark mt-2">Update</button>
-                                    </form>
+                                    <input type="number" name="qty" value="{{ $cart->qty }}" min="1"
+                                        max="{{ $cart->product->qty }}" class="form-control qty-input"
+                                        data-url="{{ route('cart.update', $cart->id) }}" style="width: 80px;">
+
                                 </td>
                                 <td>{{ $cart->product->price }}</td>
                                 <td>{{ $cart->qty * $cart->product->price }}</td>
@@ -84,7 +80,7 @@
 
                 <!-- Pagination Links -->
                 <div class="d-flex justify-content-center">
-                    {{ $carts->links('pagination::bootstrap-4') }}
+                    {{ $carts->links('pagination::bootstrap-5') }}
                 </div>
             </div>
         </div>
@@ -96,5 +92,50 @@
                 document.getElementById("delete-cart-from-" + id).submit();
             }
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            let timeout = null;
+
+            document.querySelectorAll('.qty-input').forEach(function(input) {
+                input.addEventListener('input', function() {
+                    clearTimeout(timeout);
+                    const url = this.getAttribute('data-url');
+                    const qty = this.value;
+
+                    timeout = setTimeout(() => {
+                        if (qty < 1) {
+                            alert('Quantity must be at least 1.');
+                            return;
+                        }
+
+                        // Send AJAX request to update quantity
+                        fetch(url, {
+                                method: 'PUT',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                },
+                                body: JSON.stringify({
+                                    qty: qty
+                                })
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    // Refresh page or update total dynamically
+                                    location.reload();
+                                } else {
+                                    alert(data.message || 'Failed to update the cart.');
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                alert('Something went wrong. Please try again.');
+                            });
+                    }, 1500);
+                });
+            });
+        });
     </script>
+
 @endsection

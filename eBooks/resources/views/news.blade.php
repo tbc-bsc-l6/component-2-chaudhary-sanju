@@ -35,7 +35,7 @@
                                     </div>
                                 @endforeach
                                 <div class="col-md-12">
-                                    {{ $paginatedArticles->links('pagination::bootstrap-4') }} <!-- Pagination if available -->
+                                    {{ $paginatedArticles->links('pagination::bootstrap-5') }} <!-- Pagination if available -->
                                 </div>
                             @else
                                 <div class="col-md-12">

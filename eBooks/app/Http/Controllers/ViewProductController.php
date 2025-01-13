@@ -29,9 +29,9 @@ class ViewProductController extends Controller
             })
             ->paginate(8);
 
-        $categories = Category::where('status', 'active')->get();  // Only active categories
-        $authors = Author::where('status', 'active')->get();  // Only active authors
-
+        $categories = Category::where('status', 'active')->get(); 
+        $authors = Author::where('status', 'active')->get();
+        
         return view('allProduct', compact('products', 'categories', 'authors', 'searchTerm', 'categoryId', 'authorId'));
     }
 }

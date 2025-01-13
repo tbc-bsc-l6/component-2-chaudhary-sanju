@@ -56,7 +56,7 @@
                 </table>
                 <!-- Pagination Links -->
                 <div class="d-flex justify-content-center">
-                    {{ $users->links('pagination::bootstrap-4') }}
+                    {{ $users->links('pagination::bootstrap-5') }}
                 </div>
             </div>
 
