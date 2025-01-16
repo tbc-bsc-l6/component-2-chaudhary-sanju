@@ -3,7 +3,7 @@
 @section('content')
     <style>
         .banner {
-            background-image: url('https://img.freepik.com/free-photo/book-library-with-open-textbook_1150-5918.jpg?t=st=1736404676~exp=1736408276~hmac=3483cac37e0c3cee89f691a1b3d7cb639fb6b089af06384711c1ca732de706d5&w=1380');
+            background-image: url('https://badkimaitours.com/uploadedImages/pexels-pixabay-159866.jpg');
             background-size: cover;
             background-position: center;
             min-height: 100vh;

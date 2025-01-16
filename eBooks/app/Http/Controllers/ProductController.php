@@ -16,7 +16,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with(['category', 'author'])->orderBy('created_at', 'DESC')->paginate(10);
+        $products = Product::with(['category', 'author'])->orderBy('created_at', 'DESC')->paginate(5);
         return view('admin.product.list', [
             'products' => $products
         ]);

@@ -27,6 +27,7 @@ class ViewProductController extends Controller
             ->when($authorId, function ($query, $authorId) {
                 return $query->where('author_id', $authorId);
             })
+            ->orderBy('created_at', 'desc')
             ->paginate(8);
 
         $categories = Category::where('status', 'active')->get(); 
