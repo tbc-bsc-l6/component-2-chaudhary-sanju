@@ -103,8 +103,12 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="d-grid">
-                                            <button class="btn bsb-btn-xl btn-primary py-3" type="submit">Log In</button>
+                                            <button class="btn bsb-btn-xl btn-primary py-3" type="submit">Log
+                                                In</button>
                                         </div>
+                                    </div>
+                                    <div class="text-center pt-3 home fs-5">
+                                        <a href="/">Go to Home</a>
                                     </div>
                                 </div>
                             </form>
