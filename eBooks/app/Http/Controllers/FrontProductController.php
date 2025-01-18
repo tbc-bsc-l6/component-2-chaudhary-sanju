@@ -18,14 +18,14 @@ class FrontProductController extends Controller
         $latest_products = Product::with(['author', 'category'])
             ->where('featured', false)
             ->where('status', 'active')
-            ->orderBy('published_at', 'desc')
+            ->orderBy('created_at', 'desc')
             ->limit(4) // Fetch the latest 4 products
             ->get();
 
         $featured_products = Product::with(['author', 'category'])
             ->where('featured', true)
             ->where('status', 'active')
-            ->orderBy('published_at', 'desc')
+            ->orderBy('created_at', 'desc')
             ->limit(4) // Fetch the featured 4 products
             ->get();
 

@@ -130,6 +130,7 @@ class OrderController extends Controller
         $userId = Auth::id(); 
         $orders = Order::where('user_id', $userId)
             ->with('product')
+            ->orderBy('created_at', 'desc')
             ->paginate(5);
 
         return view('order', compact('orders'));
@@ -137,7 +138,9 @@ class OrderController extends Controller
 
     public function viewAllOrder()
     {
-        $orders = Order::with(['product', 'user'])->paginate(5);
+        $orders = Order::with(['product', 'user'])
+        ->orderBy('created_at', 'desc')
+        ->paginate(5);
 
         return view('admin.order.list', compact('orders'));
     }
