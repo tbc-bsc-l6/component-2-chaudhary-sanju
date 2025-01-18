@@ -68,12 +68,12 @@
                         <div class="card-body p-3 p-md-4 p-xl-5">
                             <div class="row">
                                 <div class="col-12">
-                                    @if (Session::has('success'))
+                                    {{-- @if (Session::has('success'))
                                         <div class="alert alert-success">{{ Session::get('success') }} </div>
                                     @endif
                                     @if (Session::has('error'))
                                         <div class="alert alert-danger">{{ Session::get('error') }} </div>
-                                    @endif
+                                    @endif --}}
                                     <div class="mb-5">
                                         <h4 class="text-center">Login Here</h4>
                                     </div>
