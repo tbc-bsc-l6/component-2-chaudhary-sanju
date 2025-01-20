@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 17, 2025 at 09:36 AM
+-- Generation Time: Jan 20, 2025 at 09:01 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -84,13 +84,6 @@ CREATE TABLE `carts` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `carts`
---
-
-INSERT INTO `carts` (`id`, `user_id`, `product_id`, `qty`, `created_at`, `updated_at`) VALUES
-(12, 1, 6, 1, '2025-01-08 03:35:42', '2025-01-13 01:57:42');
 
 -- --------------------------------------------------------
 
@@ -218,7 +211,11 @@ INSERT INTO `orders` (`id`, `user_id`, `product_id`, `qty`, `status`, `created_a
 (2, 1, 9, 1, 'confirm', '2025-01-07 02:12:36', '2025-01-13 02:05:03'),
 (3, 1, 8, 1, 'confirm', '2025-01-07 02:12:36', '2025-01-13 02:05:05'),
 (4, 1, 7, 1, 'confirm', '2025-01-07 02:12:36', '2025-01-13 02:05:06'),
-(5, 1, 6, 1, 'confirm', '2025-01-07 02:15:01', '2025-01-13 02:05:07');
+(13, 6, 14, 3, 'confirm', '2025-01-19 06:13:19', '2025-01-19 06:13:48'),
+(14, 6, 15, 1, 'confirm', '2025-01-20 02:10:52', '2025-01-20 02:13:29'),
+(15, 6, 10, 1, 'pending', '2025-01-20 02:10:52', '2025-01-20 02:10:52'),
+(16, 6, 9, 1, 'pending', '2025-01-20 02:10:52', '2025-01-20 02:10:52'),
+(17, 6, 7, 1, 'pending', '2025-01-20 02:10:52', '2025-01-20 02:10:52');
 
 -- --------------------------------------------------------
 
@@ -290,7 +287,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('s5zK8aVDR0NxoVAeDnTbfqdjqhcC0QcZkDQzmRPc', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoibDd6QVE5ZjZDc2wyVnFMckdwQXVBeHJRQWk3UlZBaFpJUVdTZm9iTCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1737102834);
+('Hto5s7wxtC9ajHSvzybN6FBAqPIBiKTNV9xUTrwf', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiaUxMbjBlQkpJOU5RVFRuOXFraE5wTk55ZXJneUQ3djNleE9hNTB3diI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzM6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9vcmRlciI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTI6ImxvZ2luX2FkbWluXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6Mjt9', 1737359909);
 
 -- --------------------------------------------------------
 
@@ -315,9 +312,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Sanju Chaudhary', 'sashin.chaudhary5@gmail.com', NULL, '$2y$12$L4e32ttjHL5R9aoCnQELFuyh8ExtdKsDDtjoEgtM.C7jyBI/9fEtK', 'customer', NULL, '2025-01-04 02:59:27', '2025-01-04 02:59:27'),
-(2, 'Sanju Chaudhary', 'sashin.chaudhary6@gmail.com', NULL, '$2y$12$L4e32ttjHL5R9aoCnQELFuyh8ExtdKsDDtjoEgtM.C7jyBI/9fEtK', 'admin', NULL, '2025-01-04 03:04:24', '2025-01-05 11:07:57'),
-(4, 'Test 1', 'test@test.com', NULL, '$2y$12$ys8ZAH82Rhb8UZGUKOpIHOvt8DRZzorRdqI9SxGcgDZPo5NLoZ/Dm', 'customer', NULL, '2025-01-05 10:14:41', '2025-01-05 10:15:07');
+(1, 'Sanju Chaudhary', 'sashin.chaudhary4@gmail.com', NULL, '$2y$12$L4e32ttjHL5R9aoCnQELFuyh8ExtdKsDDtjoEgtM.C7jyBI/9fEtK', 'customer', NULL, '2025-01-04 02:59:27', '2025-01-04 02:59:27'),
+(2, 'Sanju Chaudhary', 'sashin.chaudhary6@gmail.com', NULL, '$2y$12$MIOg5FU9za/2WyoFFOcNAu2gquAwQ4cFOCG3OtGSUe.MkPRkC86BS', 'admin', NULL, '2025-01-04 03:04:24', '2025-01-20 01:28:23'),
+(6, 'Sanju Chaudhary', 'sashin.chaudhary5@gmail.com', NULL, '$2y$12$BGze6.Dr2fFlWITxo5Bdd.OucZfS2qiMYZ5G8YZiOX0KjNYT.BvEW', 'customer', NULL, '2025-01-19 06:12:22', '2025-01-20 01:30:33');
 
 --
 -- Indexes for dumped tables
@@ -432,7 +429,7 @@ ALTER TABLE `authors`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -462,19 +459,19 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
