@@ -28,7 +28,7 @@ class ProfileController extends Controller
         // Validation rules
         $rules = [
             'name' => 'required|min:5|max:255',
-            'password' => 'nullable|min:8|confirmed',
+            'password' => 'nullable|min:5|confirmed',
             'current_password' => 'nullable', // Make old password nullable
         ];
     
